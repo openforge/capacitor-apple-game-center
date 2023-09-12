@@ -27,8 +27,8 @@ If you need both Apple Game Center and Google Play Game Services, check out our 
 | Capacitor v5   | 🚧       |
 | Capacitor v4   | ✅       |
 | Capacitor v3   | ✅       |
-| Capacitor v2   | 🚧       |
-| Capacitor v1   | 🚧       |
+| Capacitor v2   | ❌       |
+| Capacitor v1   | ❌       |
 
 ✅ - Supported
 🚧 - WIP Support

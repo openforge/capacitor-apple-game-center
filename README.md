@@ -16,7 +16,9 @@
 </p>
 
 # Introduction
-Capacitor plugin for connecting and using services by Apple Game Center and Google Play Game Services. Features included are access to Sign-In, Leaderboard, and Achievements.
+Capacitor plugin for connecting and using services by Apple Game Center. Features included are access to Sign-In, Leaderboard, and Achievements.
+
+If you need both Apple Game Center and Google Play Game Services, check out our other [Capacitor plugin that contains both!](https://github.com/openforge/capacitor-game-connect)
 
 ---
 
@@ -49,99 +51,15 @@ Checkout these existing Ionic/Angular/Capacitor mobile game with the plugin inst
 - [Rock The Steps](https://github.com/openforge/rock-the-steps-app)
 - [OpenFarm](https://github.com/openforge/openfarm-puzzle-game)
 
-# @openforge/capacitor-game-connect
-
-A native capacitor plugin to connect to Game Services for iOS and Android
 
 # Getting Started
 
 ## Install
 
 ```bash
-npm install @openforge/capacitor-game-connect
+npm install @openforge/capacitor-apple-game-center
 npx cap sync
 ```
-
-## Additional Code Setup
-
-## Android
-
-In order to use the plugin, you need to make sure to include this meta-data tag in your `AndroidManifest.xml` file of your app:
-
-```xml
-<meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/game_services_project_id"/>
-```
-
-Then you need to set your Game Services Project ID in your `strings.xml` file inside your `app/src/main/res/values.xml`:
-
-```xml
-<string translatable="false"  name="game_services_project_id">YOU_APP_ID</string>
-```
-
-- Then on your `MainActivity.class` file you will need to import and register the plugin in your onCreate method:
-
-```ts
-@Override
-public void onCreate(Bundle savedInstanceState) {
-    registerPlugin(CapacitorGameConnectPlugin.class);
-    super.onCreate(savedInstanceState);
-}
-```
-
-## Setup for Android
-
-Follow this guide to configure correctly your Google Play Console to be able to use the Capacitor Game Connect plugin:
-
-1. Go to your [Google Play Console](https://play.google.com/console)
-2. If you don't have an app created, create one as a Game.
-3. Go to Play Games Services under Grow section.
-    - Cick Configuration
-    - Select the option 'No, my game doesn’t use Google APIs', set a name and click Create.
-4. Let's create a OAuth consent screen in Google Cloud Platform:
-    - Go to your [Google Cloud Platform](https://console.cloud.google.com/). Make sure you have selected the correct app you want to create the OAuth consent screen.
-    - Go to APIs & Services section, then in the sidebar click on OAuth consent screen
-    - Choose your User Type (External or Internal) and click Create.
-    - Fill the App Informationn required filds and then click on Save and Continue button at the bottom.
-    - On the Scopes tab, click on Add or remove scopes and in the Search box type the following:
-        - `auth/games` and click enter.
-        - Select the two options that appears. `.../auth/games` and `./auth/games_lite`
-        - Then start a new search and type `drive.appdata` and select the option showed.
-        - Click the Update button.
-        - Click Save and Continue button at the bottom.
-    - Let's add your Test Users. ** This will be super important because your Google Play Services will only work with these users while is not into Production
-        - Click Add Users button and type your users email.
-        - Click Add.
-        - Click Save and Continue button.
-    - And that's all! Click on Back to Dashboard button and then click on Publish App button to finish creating your OAuth consent screen.
-    - If you want to modify you information there, simple click on Back To Testing button and then click on Edit App at the top.
-5. Back to your Google Play Console
-6. In the Credentials section, click on Add Credential
-    - Select the Type "Android"
-    - Fill the other options
-    - On the Authorization section, click Create OAuth client.
-        - In the Popup that has been displayed, click on the `Create OAuth Client ID` link attached. This will be open a new window redirecting to the Google Cloud Platform Credentials section.
-        - Select the Application Type. Should be Android.
-        - Name your OAuth 2.0 client
-        - Type your package name of your application.
-        - Run the following command in your terminal:
-            - `keytool -keystore path-to-debug-or-production-keystore -list -v`
-            - If you don't have your keystore created yet, you can follow [this link](https://developer.android.com/studio/publish/app-signing#generate-key) to create it.
-            - Once you get your SHA-1 certificate fingerprint, copy and paste it into the required field.
-            - Click Create and then back to your Google Play Console.
-    - Now that you have completed created your Credential ID, click in the dropdown option and select the one you have created.
-    - Click Save Changes button at the bottom.
-7. Back to your configurations and click Review and Publish button at the top.
-    - Review if there are Actions Required to complete and fill them.
-
-## Creating Achievements on Android
-
-Before use the `Achievement Methods` of the plugin, you need to setup your Achievements and Leaderboards in your Google Play Console following the next steps:
-
-1. Navigate to your Google Play Console portal and select your app.
-2. On the sidebar, go to Grow section and then Setup and management
-3. Click Leaderboards and configure it by filling the fields. Then click save and publish your changes
-4. Click Achievements and configure it by filling the fields. Then click save and publish your changes
-5. Make sure all your changes are published by going to the Publishing section.
 
 ## Setup for iOS
 
@@ -251,8 +169,3 @@ incrementAchievementProgress(options: { achievementID: string; pointsToIncrement
 --------------------
 
 </docgen-api>
-
-# Testing Limitations
-
-### Android
-In order to fully test the integrated functionality it is required to have a physical Android device. Trying to connect to these specific Google Play Services through Android Studio Emulator/Simulator will not work.

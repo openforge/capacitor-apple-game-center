@@ -1,36 +1,36 @@
 {
-  "name": "@openforge/capacitor-game-connect",
+  "name": "@openforge/capacitor-apple-game-center",
   "version": "1.0.1",
-  "description": "Use Game Services and Game Connect",
+  "description": "Use Apple Game Connect",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "unpkg": "dist/plugin.js",
   "files": [
-    "android/src/main/",
-    "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorGameConnect.podspec"
+    "OpenforgeCapacitorGameConnect.podspec"
   ],
   "author": "OpenForge LLC",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openforge/capacitor-game-connect.git.git"
+    "url": "git+https://github.com/openforge/capacitor-apple-game-center.git.git"
   },
   "bugs": {
-    "url": "https://github.com/openforge/capacitor-game-connect.git/issues"
+    "url": "https://github.com/openforge/capacitor-apple-game-center.git/issues"
   },
   "keywords": [
     "capacitor",
     "plugin",
-    "native"
+    "native",
+    "ios",
+    "apple",
+    "apple game center"
   ],
   "scripts": {
-    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify": "npm run verify:ios && npm run verify:web",
     "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
-    "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
@@ -44,7 +44,6 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "^4.0.0",
     "@capacitor/core": "^4.0.0",
     "@capacitor/docgen": "^0.0.18",
     "@capacitor/ios": "^4.0.0",
@@ -70,9 +69,6 @@
   "capacitor": {
     "ios": {
       "src": "ios"
-    },
-    "android": {
-      "src": "android"
     }
   }
 }
